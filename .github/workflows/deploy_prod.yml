@@ -38,7 +38,8 @@ jobs:
         with:
           node-version: "14"
       - name: npm 7
-        run: npm install -g npm@7      - name: Deploy prod
+        run: npm install -g npm@7      
+      - name: Deploy prod
         run: |
           TS="$( date +%s )"
           npx vercel --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_SCOPE }} --force --confirm -m githubCommitSha=${{ github.sha }} -m timestamp=$TS --build-env CONFIG_ID=$CONFIG_ID --build-env SITE_KEY=${{ secrets.SITE_KEY }} --build-env SECRET_KEY=${{ secrets.SECRET_KEY }} --build-env DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} --build-env CHANNEL_ID=${{ secrets.CHANNEL_ID }}
